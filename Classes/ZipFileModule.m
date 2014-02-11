@@ -94,7 +94,7 @@
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	
 	if(![fileManager fileExistsAtPath:file]) {
-		NSLog(@"[DEBUG] Can't find zip file");
+		NSLog(@"[DEBUG] Can't find zip file %@", file);
 	}
 	
 	ZipArchive *zipArchive = [[ZipArchive alloc] init];
