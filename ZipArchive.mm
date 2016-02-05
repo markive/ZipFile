@@ -86,15 +86,15 @@
 			// some application does use dosDate, but tmz_date instead
 		//	zipInfo.dosDate = [fileDate timeIntervalSinceDate:[self Date1980] ];
 			NSCalendar* currCalendar = [NSCalendar currentCalendar];
-			uint flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | 
-				NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ;
+			uint flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay |
+				NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
 			NSDateComponents* dc = [currCalendar components:flags fromDate:fileDate];
-			zipInfo.tmz_date.tm_sec = [dc second];
-			zipInfo.tmz_date.tm_min = [dc minute];
-			zipInfo.tmz_date.tm_hour = [dc hour];
-			zipInfo.tmz_date.tm_mday = [dc day];
-			zipInfo.tmz_date.tm_mon = [dc month] - 1;
-			zipInfo.tmz_date.tm_year = [dc year];
+			zipInfo.tmz_date.tm_sec = (int)[dc second];
+			zipInfo.tmz_date.tm_min = (int)[dc minute];
+			zipInfo.tmz_date.tm_hour = (int)[dc hour];
+			zipInfo.tmz_date.tm_mday = (int)[dc day];
+			zipInfo.tmz_date.tm_mon = (int)[dc month] - 1;
+			zipInfo.tmz_date.tm_year = (int)[dc year];
 		}
 	}
 	
@@ -115,7 +115,7 @@
 	{
 		data = [ NSData dataWithContentsOfFile:file];
 		uLong crcValue = crc32( 0L,NULL, 0L );
-		crcValue = crc32( crcValue, (const Bytef*)[data bytes], [data length] );
+		crcValue = crc32( crcValue, (const Bytef*)[data bytes], (int)[data length] );
 		ret = zipOpenNewFileInZip3( _zipFile,
 								  (const char*) [newname UTF8String],
 								  &zipInfo,
@@ -139,7 +139,7 @@
 	{
 		data = [ NSData dataWithContentsOfFile:file];
 	}
-	unsigned int dataLen = [data length];
+	unsigned int dataLen = (int)[data length];
 	ret = zipWriteInFileInZip( _zipFile, (const void*)[data bytes], dataLen);
 	if( ret!=Z_OK )
 	{
@@ -279,7 +279,7 @@
 			dc.year = fileInfo.tmu_date.tm_year;
 			
 			NSCalendar *gregorian = [[NSCalendar alloc] 
-									 initWithCalendarIdentifier:NSGregorianCalendar];
+									 initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 			
 			orgDate = [gregorian dateFromComponents:dc] ;
 			[dc release];
@@ -339,7 +339,7 @@
 	[comps setMonth:1];
 	[comps setYear:1980];
 	NSCalendar *gregorian = [[NSCalendar alloc]
-							 initWithCalendarIdentifier:NSGregorianCalendar];
+							 initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 	NSDate *date = [gregorian dateFromComponents:comps];
 	
 	[comps release];

@@ -196,7 +196,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = kosso;
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "ZipFile" */;
@@ -280,7 +280,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = Zipfile;
 				TITANIUM_SDK = "~/Library/Application Support/Titanium/mobilesdk/osx/$(TITANIUM_SDK_VERSION)";
-				TITANIUM_SDK_VERSION = 3.5.0.GA;
+				TITANIUM_SDK_VERSION = 5.1.2.GA;
 			};
 			name = Debug;
 		};
@@ -298,7 +298,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = Zipfile;
 				TITANIUM_SDK = "~/Library/Application Support/Titanium/mobilesdk/osx/$(TITANIUM_SDK_VERSION)";
-				TITANIUM_SDK_VERSION = 3.5.0.GA;
+				TITANIUM_SDK_VERSION = 5.1.2.GA;
 			};
 			name = Release;
 		};
@@ -306,16 +306,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
+				TITANIUM_SDK_VERSION = 5.1.2.GA;
 			};
 			name = Debug;
 		};
@@ -323,14 +324,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
+				TITANIUM_SDK_VERSION = 5.1.2.GA;
 			};
 			name = Release;
 		};
